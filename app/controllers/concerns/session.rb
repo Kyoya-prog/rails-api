@@ -1,5 +1,6 @@
 module Session
   def self.get(token)
+    # tokenに紐づいているユーザーIDをハッシュで返す
     REDIS.hgetall(token)
   end
 
