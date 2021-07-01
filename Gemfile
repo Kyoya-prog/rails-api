@@ -16,6 +16,12 @@ gem 'puma', '~> 5.0'
 # Use Active Model has_secure_password
  gem 'bcrypt', '~> 3.1.7'
 
+gem 'redis-rails' # Redis を扱うための gem
+gem 'mock_redis' # Redis のモック。テスト実行時に使用。
+gem 'config' # 環境ごとに yml の設定ファイルを作成可能。
+gem 'pundit' # 認証周りを REST ベースでシンプルに実装できる。
+gem 'paranoia' # 論理削除できる。
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
