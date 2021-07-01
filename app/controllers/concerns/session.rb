@@ -1,5 +1,7 @@
 module Session
+  @current_user_token
   def self.get(token)
+    @current_user_token = token
     # tokenに紐づいているユーザーIDをハッシュで返す
     REDIS.hgetall(token)
   end
@@ -12,5 +14,10 @@ module Session
       )
     REDIS.expire(token,Settings.session.timeout)
     return token
+  end
+
+  def self.current_user
+    user_id = REDIS.hgetall(@current_user_token)["user_id"]
+    User.find(user_id)
   end
 end
