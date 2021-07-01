@@ -1,7 +1,7 @@
 class SessionController < ApplicationController
   def create
     user = User.find_by(email: params[:email])
-    token = ""
+    token = nil
     status = :unauthorized
     if user && user.authenticate(params[:password])
       token = Session.create(user)
