@@ -22,6 +22,18 @@ class PatiencesController < ApplicationController
     end
   end
 
+  def per_month
+    patiences = Session.current_user.patiences.where(registered_at:params[:start_date]..params[:end_date])
+    status = :ok
+    render json:{patiences:patiences},status:status
+  end
+
+  def per_day
+    patiences = Session.current_user.patiences.where(registered_at:params[:date])
+    status = :ok
+    render json:{patiences:patiences},status:status
+  end
+
 
   private
     def patience_params
