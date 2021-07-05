@@ -7,14 +7,12 @@ class UsersController < ApplicationController
   end
 
   def create
-    user = User.new(email:params[:email],password:params[:password])
-    status = :ok
+    user = User.new(email:params[:email].downcase,password:params[:password])
     if user.save
       token = Session.create(user)
-      status = :created
-      render json: {token:token},status:status
+      render json: {token:token},status: :ok
     else
-      render json:{error:"error"},status:status
+      response_bad_request
     end
   end
 end

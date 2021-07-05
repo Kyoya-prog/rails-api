@@ -5,7 +5,8 @@ class PatiencesController < ApplicationController
     status = :bad_request
     if patience.save
       status = :ok
-      render json:{message:"patience has been registered"},status:status
+      render json:{message:"patience has been registered",id:patience.id,money:patience.money,
+                   description:patience.description,category_title:patience.category_title,registered_at:patience.registered_at},status:status
     else
       render json:{error:"error"},status:status
     end
@@ -37,6 +38,6 @@ class PatiencesController < ApplicationController
 
   private
     def patience_params
-      params.require(:patience).permit(:money,:description,:category_title,:registered_at)
+      params[:patience].permit(:money,:description,:category_title,:registered_at,:id)
     end
 end
