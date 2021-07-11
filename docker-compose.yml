@@ -1,0 +1,51 @@
+version: '3'
+services:
+  app:
+    build:
+      context: .
+    command: bundle exec puma -C config/puma.rb
+
+    volumes:
+      - .:/saving
+      - public-data:/saving/public
+      - tmp-data:/saving/tmp
+      - log-data:/saving/log
+    networks:
+      - saving-network
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: saving_development
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - saving-network
+
+  web:
+    build:
+      context: ./nginx_docker
+    volumes:
+      - public-data:/saving/public
+      - tmp-data:/saving/tmp
+    ports:
+      - 80:80
+    depends_on:
+      - app
+    networks:
+      - saving-network
+
+volumes:
+  public-data:
+  tmp-data:
+  log-data:
+  db-data:
+
+networks:
+  saving-network:
+    external: true
