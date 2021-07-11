@@ -3,8 +3,8 @@ FROM ruby:3.0.0
 RUN apt-get update -qq && \
   apt-get install -y build-essential \
   nodejs\
-  mysql-server\
-  mysql-client
+  default-mysql-server\
+  default-mysql-client
 
 WORKDIR /saving
 

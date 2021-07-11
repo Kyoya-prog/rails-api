@@ -12,9 +12,9 @@
 
 ActiveRecord::Schema.define(version: 2021_07_01_103741) do
 
-  create_table "patiences", force: :cascade do |t|
+  create_table "patiences", charset: "utf8", force: :cascade do |t|
     t.integer "money"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "description"
     t.string "category_title", null: false
     t.date "registered_at", null: false
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_07_01_103741) do
     t.index ["user_id"], name: "index_patiences_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
