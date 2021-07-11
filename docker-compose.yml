@@ -4,7 +4,7 @@ services:
     build:
       context: .
     # =========ローカルと本番切り替え===========
-    command: bundle exec puma -C config/puma.rb -e production
+    entrypoint: bundle exec puma -C config/puma.rb -e production
     # command: bundle exec puma -C config/puma.rb
     # ======================================
     volumes:
