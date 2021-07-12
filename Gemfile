@@ -22,6 +22,8 @@ gem 'config' # 環境ごとに yml の設定ファイルを作成可能。
 gem 'pundit' # 認証周りを REST ベースでシンプルに実装できる。
 gem 'paranoia' # 論理削除できる。
 
+gem 'dotenv-rails'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
