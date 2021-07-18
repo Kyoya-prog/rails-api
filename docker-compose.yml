@@ -3,10 +3,7 @@ services:
   app:
     build:
       context: .
-    # =========ローカルと本番切り替え===========
-    entrypoint: bundle exec puma -C config/puma.rb -e production
-    # command: bundle exec puma -C config/puma.rb
-    # ======================================
+    entrypoint: bundle exec puma -C config/puma.rb
     volumes:
       - .:/saving
       - public-data:/saving/public
@@ -14,22 +11,20 @@ services:
       - log-data:/saving/log
     networks:
       - saving-network
-  # =========ローカルと本番切り替え===========
-  #   depends_on:
-  #     - db
+    depends_on:
+      - db
 
-  # db:
-  #   image: mysql:5.7
-  #   environment:
-  #     MYSQL_ROOT_PASSWORD: password
-  #     MYSQL_USER: user
-  #     MYSQL_PASSWORD: password
-  #     MYSQL_DATABASE: saving_development
-  #   volumes:
-  #     - db-data:/var/lib/mysql
-  #   networks:
-  #     - saving-network
-  # ======================================
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: fitO2_development
+    volumes:
+      - db-data:/var/lib/mysql
+    networks:
+      - fitO2-network
 
   web:
     build:
