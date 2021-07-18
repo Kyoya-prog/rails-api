@@ -374,39 +374,6 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="dotenv (vbundled(2.7.6)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/dotenv-2.7.6/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/dotenv-2.7.6/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/dotenv-2.7.6/bin" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/dotenv-2.7.6/lib" />
-        </SOURCES>
-        <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/dotenv-2.7.6/bin" />
-        </excluded>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="dotenv-rails (vbundled(2.7.6)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/dotenv-rails-2.7.6/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/dotenv-rails-2.7.6/lib" />
-        </SOURCES>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
       <library name="dry-configurable (vbundled(0.12.1)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
@@ -805,28 +772,6 @@
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/msgpack-1.4.2/spec" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/msgpack-1.4.2/bench" />
           <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/msgpack-1.4.2/doclib" />
-        </excluded>
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library name="mysql2 (vbundled(0.5.3)) [path][gem]" type="rubylib">
-        <properties>
-          <option name="version" value="4" />
-        </properties>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/mysql2-0.5.3/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/mysql2-0.5.3/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/mysql2-0.5.3/support" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/mysql2-0.5.3/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/mysql2-0.5.3/lib" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/mysql2-0.5.3/support" />
-        </SOURCES>
-        <excluded>
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/mysql2-0.5.3/ext" />
-          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/mysql2-0.5.3/support" />
         </excluded>
       </library>
     </orderEntry>
