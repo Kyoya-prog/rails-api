@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: .
-    command: bundle exec puma -C config/puma.rb
+    entrypoint: bundle exec puma -C config/puma.rb
 
     volumes:
       - .:/saving
