@@ -24,6 +24,8 @@ gem 'paranoia' # 論理削除できる。
 
 gem 'dotenv-rails'
 
+gem 'sprockets', '~> 3.7.2'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
