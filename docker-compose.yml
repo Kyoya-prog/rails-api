@@ -24,7 +24,7 @@ services:
     volumes:
       - db-data:/var/lib/mysql
     networks:
-      - fitO2-network
+      - saving-network
 
   web:
     build:
