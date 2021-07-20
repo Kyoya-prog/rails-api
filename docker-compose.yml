@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: .
-    entrypoint: bundle exec puma -C config/puma.rb
+    entrypoint: bundle exec puma -C config/puma.rb -e production
     volumes:
       - .:/saving
       - public-data:/saving/public
@@ -11,20 +11,20 @@ services:
       - log-data:/saving/log
     networks:
       - saving-network
-    depends_on:
-      - db
-
-  db:
-    image: mysql:5.7
-    environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: fitO2_development
-    volumes:
-      - db-data:/var/lib/mysql
-    networks:
-      - saving-network
+#    depends_on:
+#      - db
+#
+#  db:
+#    image: mysql:5.7
+#    environment:
+#      MYSQL_ROOT_PASSWORD: password
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: password
+#      MYSQL_DATABASE: fitO2_development
+#    volumes:
+#      - db-data:/var/lib/mysql
+#    networks:
+#      - saving-network
 
   web:
     build:
