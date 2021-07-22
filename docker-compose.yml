@@ -48,13 +48,13 @@ volumes:
   log-data:
   db-data:
 
-redis:
-  image: redis:5.0.5
-  ports:
-    - 6379:6379
-  volumes:
-    - ./redis:/data
-  command: redis-server --appendonly yes
+  redis:
+    image: redis:5.0.5
+    ports:
+      - 6379:6379
+    volumes:
+      - ./redis:/data
+    command: redis-server --appendonly yes
 
 networks:
   saving-network:
