@@ -1,5 +1,3 @@
-if Rails.env.test?
-  REDIS = MockRedis.new
-else
-  REDIS = Redis.new(url: Settings.session.url)
-end
+require 'redis-rails'
+
+REDIS = Redis.new(host: "redis", port: 6379, db: 0)

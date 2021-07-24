@@ -3,7 +3,7 @@ services:
   app:
     build:
       context: .
-    entrypoint: bundle exec puma -C config/puma.rb
+    entrypoint: bundle exec puma -C config/puma.rb -e production
     volumes:
       - .:/saving
       - public-data:/saving/public
@@ -11,18 +11,31 @@ services:
       - log-data:/saving/log
     networks:
       - saving-network
-    depends_on:
-      - db
-
-  db:
-    image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
-      MYSQL_DATABASE: fitO2_development
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+#    depends_on:
+#      - db
+#
+#  db:
+#    image: mysql:5.7
+#    environment:
+#      MYSQL_ROOT_PASSWORD: password
+#      MYSQL_USER: user
+#      MYSQL_PASSWORD: password
+#      MYSQL_DATABASE: fitO2_development
+#    volumes:
+#      - db-data:/var/lib/mysql
+#    networks:
+#      - saving-network
+
+  redis:
+    image: redis:5.0.5
+    ports:
+      - 6379:6379
     volumes:
-      - db-data:/var/lib/mysql
+      - ./redis:/data
+    command: redis-server --appendonly yes
     networks:
       - saving-network
 
@@ -36,6 +49,10 @@ services:
       - 80:80
     depends_on:
       - app
+      - redis
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
     networks:
       - saving-network
 volumes:
