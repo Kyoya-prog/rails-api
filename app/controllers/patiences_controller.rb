@@ -38,6 +38,6 @@ class PatiencesController < ApplicationController
 
   private
     def patience_params
-      params.require(:patiences).permit(:money,:description,:category_title,:registered_at,:id)
+      params.require(:patience).permit(:money,:description,:category_title,:registered_at,:id)
     end
 end
