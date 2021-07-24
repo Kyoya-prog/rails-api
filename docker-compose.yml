@@ -36,6 +36,8 @@ services:
     volumes:
       - ./redis:/data
     command: redis-server --appendonly yes
+    networks:
+      - saving-network
 
   web:
     build:
