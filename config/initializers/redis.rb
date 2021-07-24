@@ -1,4 +1,3 @@
 require 'redis-rails'
 
-uri = URI.parse(ENV["REDIS"])
-REDIS = Redis.new(host: ENV["REDIS_HOST"], port: uri.port)
+REDIS = Redis.new(host: "127.0.0.1", port: 6379, db: 0)
