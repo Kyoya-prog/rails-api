@@ -11,30 +11,13 @@ services:
       - log-data:/saving/log
     networks:
       - saving-network
-    environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
-#    depends_on:
-#      - db
-#
-#  db:
-#    image: mysql:5.7
-#    environment:
-#      MYSQL_ROOT_PASSWORD: password
-#      MYSQL_USER: user
-#      MYSQL_PASSWORD: password
-#      MYSQL_DATABASE: fitO2_development
-#    volumes:
-#      - db-data:/var/lib/mysql
-#    networks:
-#      - saving-network
 
   redis:
-    image: redis:5.0.5
+    image: redis:latest
     ports:
       - 6379:6379
     volumes:
-      - ./redis:/data
+      - ./data/redis:/data
     command: redis-server --appendonly yes
     networks:
       - saving-network
@@ -50,14 +33,12 @@ services:
     depends_on:
       - app
       - redis
-    environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
+    env_file:
+      - .env
     networks:
       - saving-network
 volumes:
   public-data:
-
   tmp-data:
   log-data:
   db-data:
