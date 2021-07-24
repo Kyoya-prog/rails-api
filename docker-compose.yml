@@ -11,9 +11,6 @@ services:
       - log-data:/saving/log
     networks:
       - saving-network
-    environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
 
   redis:
     image: redis:latest
@@ -36,9 +33,8 @@ services:
     depends_on:
       - app
       - redis
-    environment:
-      REDIS_HOST: redis
-      REDIS_PORT: 6379
+    env_file:
+      - .env
     networks:
       - saving-network
 volumes:
