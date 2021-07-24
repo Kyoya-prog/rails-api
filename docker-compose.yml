@@ -11,6 +11,9 @@ services:
       - log-data:/saving/log
     networks:
       - saving-network
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
 #    depends_on:
 #      - db
 #
