@@ -10,7 +10,10 @@ jobs:
     steps:
       - checkout
       - run:
+          name: bundler install
+          command: |
+            gem install bundler
+      - run:
           name: Which bundler?
           command: bundle -v
-      - ruby/gem install bundler:2.2.23
       - ruby/bundle-install
