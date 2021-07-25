@@ -19,7 +19,7 @@ jobs:
       - ruby/bundle-install
   deploy:
     machine:
-      image: circleci/ruby:3.0.0
+      enabled: true
     steps:
       - checkout
       - add_ssh_keys:
