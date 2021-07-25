@@ -19,10 +19,12 @@ jobs:
       - ruby/bundle-install
   deploy:
     machine:
-      image: circleci/classic:edge
+      image: circleci/ruby:3.0.0
     steps:
       - checkout
       - add_ssh_keys:
+          fingerprints:
+            - 34:98:98:c5:83:2a:c0:b1:94:a0:c2:56:2d:4c:0d:11
       - run:
           name: Auto Deproy
           command: ssh ${USER_NAME}@${HOST_NAME} 'cd /saving && sudo git pull origin main'
