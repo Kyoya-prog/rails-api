@@ -17,8 +17,12 @@ development:
   database: saving_development
 
 test:
-  <<: *default
-  database: saving_test
+  adapter: postgresql
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: <%= ENV['DB_HOST'] %>
 
 production:
   <<: *default
