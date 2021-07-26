@@ -20,7 +20,7 @@ jobs:
 
   test:
     docker:
-      - image: circleci/ruby:2.7-node
+      - image: circleci/ruby:3.0.0
       - image: circleci/postgres:11.6-alpine
         name: "db"
         environment:
