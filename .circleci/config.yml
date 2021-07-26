@@ -34,7 +34,9 @@ jobs:
       PGUSER: postgres
       PGPASSWORD: ""
       RAILS_ENV: test
+    working_directory: ~/saving/src
     steps:
+      - checkout
       - run:
           name: rails db:migrate
           command: bundle exec rails db:migrate
@@ -72,4 +74,3 @@ workflows:
           filters:
             branches:
               only: main
-              # テスト用のコメント
