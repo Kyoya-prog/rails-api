@@ -24,9 +24,10 @@ jobs:
       - image: circleci/postgres:11.6-alpine
         name: "db"
         environment:
-          POSTGRES_USER: postgres
-          POSTGRES_DB: myapp_test
-          POSTGRES_PASSWORD: ""
+          DB_USERNAME: postgres
+          DB_DATABASE: myapp_test
+          DB_PASSWORD: ""
+          DB_HOST: 127.0.0.1
     environment:
       BUNDLE_JOBS: "4"
       BUNDLE_RETRY: "3"
