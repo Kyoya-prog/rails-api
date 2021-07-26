@@ -42,6 +42,9 @@ jobs:
           name: bundle install
           command: bundle install
       - run:
+          name: launch postgres
+          command: pg_ctl -l /usr/local/var/postgres/server.log start
+      - run:
           name: rails db:migrate
           command: bundle exec rails db:migrate
       - run:
