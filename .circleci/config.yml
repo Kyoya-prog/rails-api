@@ -20,41 +20,48 @@ jobs:
   test:
     docker:
       - image: circleci/ruby:3.0.0
-      - image: circleci/mysql:5.5
-        name: "db"
         environment:
-          DB_USERNAME: root
-          DB_DATABASE: saving_test
-          DB_PASSWORD: ""
-          DB_HOST: 121.0.0.1
-    environment:
-      BUNDLE_JOBS: "4"
-      BUNDLE_RETRY: "3"
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: root
-      MYSQL_DB: saving_test
-      RAILS_ENV: test
-    working_directory: ~/saving/src
+          - BUNDLER_VERSION: 2.1.4
+          - RAILS_ENV: 'test'
+          - DB_HOST: 127.0.0.1
+      - image: circleci/mysql:5.7
+        environment:
+          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+          - MYSQL_DB: saving_test
+    working_directory: ~/saving
     steps:
       - checkout
+
       - run:
-          name: bundle install
-          command: bundle install
+          name: wait for database
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 5m
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+
       - run:
-          name: setup database
+          name: Install dependencies
           command: |
-            sudo apt update
-            sudo apt-get install default-mysql-client
-      - run: sleep 10
+            gem install bundler -v 2.1.4
+            bundle install --path=vendor/bundle --jobs 4 --retry 3
+
+      - save_cache:
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
       - run:
-          name: execute sql
-          command: mysql -h 127.0.0.1 -u root -e "<SQL>"
+          name: Database Setup
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:schema:load
+
       - run:
-          name: rails db:migrate
-          command: bundle exec rails db:migrate
-      - run:
-          name: run test
+          name: Run test
           command: bundle exec rails test
+
 
   deploy:
     machine:
