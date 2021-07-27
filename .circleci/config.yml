@@ -40,6 +40,9 @@ jobs:
           name: bundle install
           command: bundle install
       - run:
+          name: setup database
+          command: sudo apt-get install mysql-client
+      - run:
           name: execute sql
           command: mysql-ctl start
       - run:
