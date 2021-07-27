@@ -8,6 +8,7 @@ jobs:
       - image: circleci/ruby:3.0.0
     executor: ruby/default
     steps:
+      - checkout
       - run:
           name: bundler install
           command: |
@@ -31,7 +32,6 @@ jobs:
     working_directory: ~/saving
     steps:
       - checkout
-
       - run:
           name: wait for database
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 5m
