@@ -30,13 +30,8 @@ jobs:
           name: Reflect Code
           command: ssh ${USER_NAME}@${HOST_NAME} 'cd /saving && sudo git pull origin main'
       - run:
-          name: Check Repository
-          command: ssh ${USER_NAME}@${HOST_NAME} 'cd /saving && cat .env'
-      - run:
-          name: docker
-          command: |
-            docker-compose build
-            docker-compose up
+          name: Docker Run
+          command: ssh ${USER_NAME}@${HOST_NAME} 'docker-compose build && docker-compose up'
 
 workflows:
   version: 2
