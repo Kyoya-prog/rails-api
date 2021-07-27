@@ -21,19 +21,17 @@ jobs:
   test:
     docker:
       - image: circleci/ruby:3.0.0
-      - image: circleci/postgres:11.6-alpine
+      - image: circleci/mysql:5.5
         name: "db"
         environment:
-          DB_USERNAME: postgres
-          DB_DATABASE: myapp_test
+          DB_USERNAME: root
+          DB_DATABASE: saving_test
           DB_PASSWORD: ""
           DB_HOST: 127.0.0.1
     environment:
       BUNDLE_JOBS: "4"
       BUNDLE_RETRY: "3"
-      PGHOST: 127.0.0.1
-      PGUSER: postgres
-      PGPASSWORD: ""
+      APP_DATABASE_HOST: 127.0.0.1
       RAILS_ENV: test
     working_directory: ~/saving/src
     steps:
@@ -42,16 +40,10 @@ jobs:
           name: bundle install
           command: bundle install
       - run:
-          name: launch postgres
-          command: pg_ctl -l /usr/local/var/postgres/server.log start
-      - run:
           name: rails db:migrate
           command: bundle exec rails db:migrate
       - run:
-          name: Database setup
-          command: bundle exec rails db:schema:load --trace
-      - run:
-          name: Rspec
+          name: run test
           command: bundle exec rails test
 
   deploy:

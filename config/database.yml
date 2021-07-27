@@ -17,7 +17,8 @@ development:
   database: saving_development
 
 test:
-  adapter: postgresql
+  database: saving_test
+  adapter: mysql2
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: <%= ENV['DB_USERNAME'] %>
