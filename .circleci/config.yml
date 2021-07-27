@@ -36,6 +36,7 @@ jobs:
       RAILS_ENV: test
     working_directory: ~/saving/src
     steps:
+      - checkout
       - run:
           name: bundle install
           command: bundle install
@@ -59,6 +60,7 @@ jobs:
     machine:
       enabled: true
     steps:
+      - checkout
       - add_ssh_keys:
           fingerprints:
             - 34:98:98:c5:83:2a:c0:b1:94:a0:c2:56:2d:4c:0d:11
