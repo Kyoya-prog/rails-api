@@ -27,7 +27,7 @@ jobs:
           DB_USERNAME: root
           DB_DATABASE: saving_test
           DB_PASSWORD: ""
-          DB_HOST: 127.0.0.1
+          DB_HOST: db
     environment:
       BUNDLE_JOBS: "4"
       BUNDLE_RETRY: "3"
