@@ -30,6 +30,9 @@ jobs:
           name: Reflect Code
           command: ssh ${USER_NAME}@${HOST_NAME} 'cd /saving && sudo git pull origin main'
       - run:
+          name: Check Repository
+          command: ls
+      - run:
           name: docker
           command: |
             docker-compose build
