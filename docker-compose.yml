@@ -34,7 +34,7 @@ services:
       - app
       - redis
     env_file:
-      - .env
+      - ~/.env
     networks:
       - saving-network
 volumes:
