@@ -46,7 +46,7 @@ jobs:
             sudo apt-get install default-mysql-client
       - run:
           name: execute sql
-          command: mysql-ctl start
+          command: mysql -h 127.0.0.1 -u root -e "<SQL>"
       - run:
           name: rails db:migrate
           command: bundle exec rails db:migrate
