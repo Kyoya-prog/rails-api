@@ -3,21 +3,6 @@ orbs:
   ruby: circleci/ruby@0.1.2
 
 jobs:
-  build:
-    docker:
-      - image: circleci/ruby:3.0.0
-    executor: ruby/default
-    steps:
-      - checkout
-      - run:
-          name: bundler install
-          command: |
-            gem install bundler
-      - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/bundle-install
-
   test:
     docker:
       - image: circleci/ruby:3.0.0
@@ -80,13 +65,10 @@ workflows:
   version: 2
   build_test_and_deploy:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
+      - test
       - deploy:
           requires:
-            - build
+            - test
           filters:
             branches:
               only: main
