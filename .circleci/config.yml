@@ -31,7 +31,9 @@ jobs:
     environment:
       BUNDLE_JOBS: "4"
       BUNDLE_RETRY: "3"
-      APP_DATABASE_HOST: 127.0.0.1
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: root
+      MYSQL_DB: saving_test
       RAILS_ENV: test
     working_directory: ~/saving/src
     steps:
