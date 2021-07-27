@@ -3,6 +3,27 @@ orbs:
   ruby: circleci/ruby@0.1.2
 
 jobs:
+  build:
+    docker:
+      - image: circleci/ruby:3.0.0
+        environment:
+          RAILS_ENV: test
+    working_directory: ~/saving
+    steps:
+      - checkout
+      - restore_cache:
+          name: restore result bundle install
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            - v1-dependencies-
+      - run:
+          name: bundle install
+          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - save_cache:
+          name: save cash result bundle install
+          paths:
+            - ./vendor/bundle
+          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
   test:
     docker:
       - image: circleci/ruby:3.0.0
@@ -22,6 +43,7 @@ jobs:
           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 5m
 
       - restore_cache:
+          name: restore cash result bundle install
           keys:
             - v1-dependencies-{{ checksum "Gemfile.lock" }}
             - v1-dependencies-
@@ -31,11 +53,6 @@ jobs:
           command: |
             gem install bundler -v 2.1.4
             bundle install --path=vendor/bundle --jobs 4 --retry 3
-
-      - save_cache:
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-          paths:
-            - vendor/bundle
 
       - run:
           name: Database Setup
@@ -65,10 +82,13 @@ workflows:
   version: 2
   test_and_deploy:
     jobs:
-      - test
+      - build
+      - test:
+          requires:
+            - build
       - deploy:
           requires:
-            - test
+            - build
           filters:
             branches:
               only: main
