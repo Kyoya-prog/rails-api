@@ -903,6 +903,28 @@
       </library>
     </orderEntry>
     <orderEntry type="module-library">
+      <library name="pg (vbundled(1.2.3)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="4" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pg-1.2.3/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pg-1.2.3/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pg-1.2.3/spec" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pg-1.2.3/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pg-1.2.3/lib" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pg-1.2.3/spec" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pg-1.2.3/ext" />
+          <root url="file://$MODULE_DIR$/vendor/bundle/ruby/3.0.0/gems/pg-1.2.3/spec" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
       <library name="puma (vbundled(5.3.2)) [path][gem]" type="rubylib">
         <properties>
           <option name="version" value="4" />
