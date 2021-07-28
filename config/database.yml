@@ -10,15 +10,19 @@ default: &default
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
   password: password
-  host: db
+  host: 127.0.0.1
 
 development:
   <<: *default
   database: saving_development
 
 test:
-  <<: *default
   database: saving_test
+  adapter: mysql2
+  encoding: utf8
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  host: <%= ENV['DB_HOST'] %>
 
 production:
   <<: *default
