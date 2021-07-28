@@ -18,6 +18,7 @@ services:
       - 6379:6379
     volumes:
       - ./log:/var/log/redis
+      - ./data/redis:/data
     command: redis-server --appendonly yes
     networks:
       - saving-network
