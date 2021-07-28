@@ -6,65 +6,17 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:3.0.0
-        environment:
-          RAILS_ENV: test
-    working_directory: ~/saving
-    steps:
-      - checkout
-      - restore_cache:
-          name: restore result bundle install
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-
-      - run:
-          name: bundle install
-          command: bundle install --path=vendor/bundle --jobs 4 --retry 3
-      - save_cache:
-          name: save cash result bundle install
-          paths:
-            - ./vendor/bundle
-          key: v1-dependencies-{{ checksum "Gemfile.lock" }}
-  test:
-    docker:
-      - image: circleci/ruby:3.0.0
-        environment:
-          - BUNDLER_VERSION: 2.1.4
-          - RAILS_ENV: 'test'
-          - DB_HOST: 127.0.0.1
-      - image: circleci/mysql:5.7
-        environment:
-          - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-          - MYSQL_DB: saving_test
-    working_directory: ~/saving
+    executor: ruby/default
     steps:
       - checkout
       - run:
-          name: wait for database
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 5m
-
-      - restore_cache:
-          name: restore cash result bundle install
-          keys:
-            - v1-dependencies-{{ checksum "Gemfile.lock" }}
-            - v1-dependencies-
-
-      - run:
-          name: Install dependencies
+          name: bundler install
           command: |
-            gem install bundler -v 2.1.4
-            bundle install --path=vendor/bundle --jobs 4 --retry 3
-
+            gem install bundler
       - run:
-          name: Database Setup
-          command: |
-            bundle exec rake db:create
-            bundle exec rake db:schema:load
-
-      - run:
-          name: Run test
-          command: bundle exec rails test
-
-
+          name: Which bundler?
+          command: bundle -v
+      - ruby/bundle-install
   deploy:
     machine:
       enabled: true
@@ -83,15 +35,13 @@ jobs:
 
 workflows:
   version: 2
-  build_test_and_deploy:
+  build_and_deploy:
     jobs:
       - build
-      - test:
-          requires:
-            - build
       - deploy:
           requires:
             - build
           filters:
             branches:
               only: main
+              # テスト用のコメント
