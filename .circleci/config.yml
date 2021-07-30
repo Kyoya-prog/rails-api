@@ -79,7 +79,7 @@ jobs:
           command: ssh ${USER_NAME}@${HOST_NAME} 'cd /saving && sudo git pull origin main'
       - run:
           name: Docker task
-          command: ssh ${USER_NAME}@${HOST_NAME} 'cd /saving && docker-compose build && docker-compose up -b'
+          command: ssh ${USER_NAME}@${HOST_NAME} 'cd /saving && docker-compose build && docker-compose up -d'
       - run:
           name: database setup
           command: ssh ${USER_NAME}@${HOST_NAME} 'cd /saving && docker-compose run app rails db:migrate'
