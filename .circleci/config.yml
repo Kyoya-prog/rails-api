@@ -82,7 +82,7 @@ jobs:
           command: ssh ${USER_NAME}@${HOST_NAME} 'cd /saving && docker-compose build && docker-compose up -d'
       - run:
           name: database setup
-          command: ssh ${USER_NAME}@${HOST_NAME} 'cd /saving && docker-compose exec app rails db:migrate RAILS_ENV=production'
+          command: ssh ${USER_NAME}@${HOST_NAME} 'cd /saving && docker-compose exec -T app rails db:migrate RAILS_ENV=production'
 
 workflows:
   version: 2
