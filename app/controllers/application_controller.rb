@@ -3,7 +3,8 @@ class ApplicationController < ActionController::API
 
   before_action :set_session
   before_action :require_login
-  skip_before_action :hello
+  skip_before_action :set_session, only: [:hello]
+  skip_before_action :require_login, only: [:hello]
 
   @current_user = {}
 
