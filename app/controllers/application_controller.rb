@@ -3,8 +3,13 @@ class ApplicationController < ActionController::API
 
   before_action :set_session
   before_action :require_login
+  skip_before_action :hello
 
   @current_user = {}
+
+  def hello
+    render html: "hello, world!"
+  end
 
   def require_login
     render json: { error: @current_user }, status: :unauthorized if @current_user.empty?
