@@ -1,3 +1,11 @@
 session:
   url: redis://localhost:6379
   timeout: 7200
+error_codes:
+  models:
+    user:
+      email:
+        taken: 2000
+        invalid: 2002
+      password:
+        too_short: 2001
