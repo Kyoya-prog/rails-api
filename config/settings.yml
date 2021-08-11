@@ -2,6 +2,7 @@ session:
   url: redis://localhost:6379
   timeout: 7200
 error_codes:
+  unprocessable_entity: 422
   models:
     user:
       email:
