@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::API
+  rescue_from ActiveRecord::RecordNotFound,with: :record_not_found
   include ActionController::HttpAuthentication::Token::ControllerMethods
 
   before_action :set_session
@@ -44,6 +45,10 @@ class ApplicationController < ActionController::API
   # 500 Internal Server Error
   def response_internal_server_error
     render status: 500, json: { status: 500, message: 'Internal Server Error' }
+  end
+
+  def record_not_found
+    render json: {error:{code:Settings.error_codes.record_not_found,message: "record not found"}}
   end
 
   private

@@ -8,7 +8,9 @@ class SessionController < ApplicationController
     if user && user.authenticate(params[:password])
       token = Session.create(user)
       status = :created
-    end
     render json: { token: token },status: status
+    else
+      raise ActiveRecord::RecordNotFound
+    end
   end
 end
