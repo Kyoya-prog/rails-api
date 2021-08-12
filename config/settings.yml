@@ -3,6 +3,7 @@ session:
   timeout: 7200
 error_codes:
   unprocessable_entity: 422
+  record_not_found: 2003
   models:
     user:
       email:
