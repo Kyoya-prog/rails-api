@@ -19,6 +19,9 @@ jobs:
       - run:
           name: bundle install
           command: bundle install --path=vendor/bundle --jobs 4 --retry 3
+      - run:
+          name: rubocop
+          command: bundle exec rubocop
       - save_cache:
           name: save cash result bundle install
           paths:
