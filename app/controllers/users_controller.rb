@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   def error422(err)
     class_name = err.record.class.name.underscore
     active_model_errors = err.record.errors
-    errors = []
+    error = {}
     active_model_errors.details.each do |attribute, attribute_errors|
       attribute_errors.each do |error_info|
         # エラーコードとエラーメッセージをセットにするため、full_messagesではなく
@@ -26,8 +26,7 @@ class UsersController < ApplicationController
           attribute, error_key, error_info.except(*ActiveModel::Callbacks),
           )
 
-        errors <<
-          {
+        error = {
             code: Settings.error_codes.models.send(class_name)&.send(attribute)&.send(error_key) ||
               Settings.error_codes.unprocessable_entity, # error_codesにて定義のないエラーの場合、汎用的なエラーコードを返す
             message: active_model_errors.full_message(attribute, message),
@@ -35,6 +34,6 @@ class UsersController < ApplicationController
       end
     end
 
-    render json: { errors: errors }, status: :unprocessable_entity
+    render json: { code:error[:code],message:error[:message]}, status: :unprocessable_entity
   end
 end
