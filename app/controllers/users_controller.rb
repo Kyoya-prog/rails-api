@@ -26,8 +26,12 @@ class UsersController < ApplicationController
           attribute, error_key, error_info.except(*ActiveModel::Callbacks),
           )
 
+<<<<<<< Updated upstream
         error =
           {
+=======
+        error = {
+>>>>>>> Stashed changes
             code: Settings.error_codes.models.send(class_name)&.send(attribute)&.send(error_key) ||
               Settings.error_codes.unprocessable_entity, # error_codesにて定義のないエラーの場合、汎用的なエラーコードを返す
             message: active_model_errors.full_message(attribute, message),
