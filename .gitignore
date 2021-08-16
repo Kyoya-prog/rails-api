@@ -17,6 +17,8 @@
 !/log/.keep
 !/tmp/.keep
 
+/data/*
+
 # Ignore pidfiles, but keep the directory.
 /tmp/pids/*
 !/tmp/pids/
@@ -37,5 +39,3 @@ config/environments/*.local.yml
 .env
 
 .idea
-
-/data/redis/*
