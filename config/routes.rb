@@ -6,6 +6,10 @@ Rails.application.routes.draw do
     end
   end
   resources :users, :only => [:create]
-  resources :session, :only => [:create, :destroy]
+  resources :session, :only => [:create, :destroy] do
+    collection do
+      get :check
+    end
+  end
   root 'application#hello'
 end

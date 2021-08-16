@@ -11,4 +11,8 @@ class SessionController < ApplicationController
       raise ActiveRecord::RecordNotFound
     end
   end
+
+  def check
+    render json: { result: "logged in" }, status: :ok
+  end
 end

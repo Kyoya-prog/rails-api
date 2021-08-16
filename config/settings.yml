@@ -4,6 +4,7 @@ session:
 error_codes:
   unprocessable_entity: 422
   record_not_found: 2003
+  unauthorized: 2004
   models:
     user:
       email:
