@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
   end
 
   def record_not_found
-    render json: {error:{code:Settings.error_codes.record_not_found,message: "record not found"}}
+    render json: {code:Settings.error_codes.record_not_found,message: "record not found"},status: :unprocessable_entity
   end
 
   private
