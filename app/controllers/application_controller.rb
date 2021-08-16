@@ -14,7 +14,7 @@ class ApplicationController < ActionController::API
   end
 
   def require_login
-    render json: { error: @current_user }, status: :unauthorized if @current_user.empty?
+    render json: { code: Settings.error_codes.unauthorized,message: "user must sign in"}, status: :unauthorized if @current_user.empty?
   end
 
   def record_not_found
