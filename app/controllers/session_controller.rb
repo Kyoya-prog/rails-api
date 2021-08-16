@@ -13,6 +13,6 @@ class SessionController < ApplicationController
   end
 
   def check
-    render json: { result: "logged in"}, status: :ok
+    render json: { result: "logged in" }, status: :ok
   end
 end
