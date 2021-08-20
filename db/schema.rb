@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_01_103741) do
+ActiveRecord::Schema.define(version: 2021_08_20_033946) do
 
   create_table "patiences", charset: "utf8", force: :cascade do |t|
     t.integer "money"
     t.bigint "user_id", null: false
-    t.string "description"
+    t.string "memo"
     t.string "category_title", null: false
     t.date "registered_at", null: false
     t.datetime "created_at", precision: 6, null: false
