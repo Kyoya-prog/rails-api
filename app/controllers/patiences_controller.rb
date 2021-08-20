@@ -24,6 +24,15 @@ class PatiencesController < ApplicationController
     end
   end
 
+  def destroy
+    patience = Session.current_user.patiences.find_by(id:params[:id])
+    if patience.destroy
+      render json:{message:"patience has been deleted"},status: :ok
+    else
+      render json: {error:"delete failed"},status: :bad_request
+    end
+  end
+
   def per_month
     patiences = Session.current_user.patiences.where(registered_at:params[:start_date]..params[:end_date])
     status = :ok
