@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'home/index'
   resources :patiences do
     collection do
       get :per_month
@@ -11,5 +12,6 @@ Rails.application.routes.draw do
       get :check
     end
   end
-  root 'application#hello'
+  root to: 'home#index'
+  get 'privacy' ,to: 'home#privacy'
 end
