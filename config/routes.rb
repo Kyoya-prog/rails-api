@@ -13,5 +13,4 @@ Rails.application.routes.draw do
     end
   end
   root to: 'home#index'
-  get 'privacy' ,to: 'home#privacy'
 end
