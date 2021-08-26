@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_20_033946) do
+ActiveRecord::Schema.define(version: 2021_08_26_085333) do
 
   create_table "patiences", charset: "utf8", force: :cascade do |t|
     t.integer "money"
     t.bigint "user_id", null: false
     t.string "memo"
     t.string "category_title", null: false
-    t.date "registered_at", null: false
+    t.datetime "registered_at", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id", "registered_at"], name: "index_patiences_on_user_id_and_registered_at"
