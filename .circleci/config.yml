@@ -33,7 +33,6 @@ jobs:
         environment:
           - BUNDLER_VERSION: 2.1.4
           - RAILS_ENV: 'test'
-          - DB_HOST: 127.0.0.1
       - image: circleci/mysql:5.7
         environment:
           - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
@@ -62,6 +61,7 @@ jobs:
           command: |
             bundle exec rake db:create
             bundle exec rake db:schema:load
+            bundle exec rake db:migrate
 
       - run:
           name: Run test
