@@ -22,7 +22,7 @@ test:
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  host: <%= ENV['DB_HOST'] %>
+  host: 127.0.0.1
 
 production:
   <<: *default
