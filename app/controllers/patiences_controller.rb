@@ -1,4 +1,5 @@
 require 'time'
+require 'date'
 
 class PatiencesController < ApplicationController
   def create
@@ -36,8 +37,8 @@ class PatiencesController < ApplicationController
   end
 
   def per_month
-    begin_month = params[:date].begin_of_month
-    end_month = params[:date].end_of_month
+    begin_month = Date.parse(params[:date]).beginning_of_month
+    end_month = Date.parse(params[:date]).end_of_month
     patiences = Session.current_user.patiences.where(registered_at:begin_month..end_month)
     status = :ok
     render json:{patiences:patiences},status:status
