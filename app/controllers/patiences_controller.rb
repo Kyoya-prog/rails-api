@@ -1,5 +1,3 @@
-require 'time'
-
 class PatiencesController < ApplicationController
   def create
     user = Session.current_user
@@ -36,16 +34,13 @@ class PatiencesController < ApplicationController
   end
 
   def per_month
-    begin_month = params[:date].begin_of_month
-    end_month = params[:date].end_of_month
-    patiences = Session.current_user.patiences.where(registered_at:begin_month..end_month)
+    patiences = Session.current_user.patiences.where(registered_at:params[:start_date]..params[:end_date])
     status = :ok
     render json:{patiences:patiences},status:status
   end
 
   def per_day
-    date = Time.parse(params[:date]).localtime.to_date.to_time
-    patiences = Session.current_user.patiences.where(registered_at:date)
+    patiences = Session.current_user.patiences.where(registered_at:params[:date])
     status = :ok
     render json:{patiences:patiences},status:status
   end
