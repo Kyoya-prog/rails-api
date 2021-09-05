@@ -39,6 +39,8 @@ class PatiencesController < ApplicationController
   def per_month
     begin_month = Date.parse(params[:date]).beginning_of_month
     end_month = Date.parse(params[:date]).end_of_month
+    logger.info "begin_month: #{begin_month}"
+    logger.info "end_month: #{end_month}"
     patiences = Session.current_user.patiences.where(registered_at:begin_month..end_month)
     status = :ok
     render json:{patiences:patiences},status:status
@@ -46,6 +48,7 @@ class PatiencesController < ApplicationController
 
   def per_day
     date = Time.parse(params[:date]).localtime.to_date.to_time
+    logger.info "date: #{date}"
     patiences = Session.current_user.patiences.where(registered_at:date)
     status = :ok
     render json:{patiences:patiences},status:status
