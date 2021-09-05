@@ -60,4 +60,3 @@ class PatiencesController < ApplicationController
     params.permit(:money,:memo,:category_title,:registered_at,:id)
   end
 end
-
