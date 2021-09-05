@@ -37,8 +37,8 @@ class PatiencesController < ApplicationController
   end
 
   def per_month
-    begin_month = Date.parse(params[:date]).beginning_of_month
-    end_month = Date.parse(params[:date]).end_of_month
+    begin_month = params[:date].in_time_zone.beginning_of_month
+    end_month = params[:date].in_time_zone.end_of_month
     logger.info "begin_month: #{begin_month}"
     logger.info "end_month: #{end_month}"
     patiences = Session.current_user.patiences.where(registered_at:begin_month..end_month)
@@ -47,7 +47,7 @@ class PatiencesController < ApplicationController
   end
 
   def per_day
-    date = Time.parse(params[:date]).localtime.to_date.to_time
+    date = Time.parse(params[:date]).in_time_zone
     logger.info "date: #{date}"
     patiences = Session.current_user.patiences.where(registered_at:date)
     status = :ok
@@ -56,7 +56,8 @@ class PatiencesController < ApplicationController
 
 
   private
-    def patience_params
-      params.permit(:money,:memo,:category_title,:registered_at,:id)
-    end
+  def patience_params
+    params.permit(:money,:memo,:category_title,:registered_at,:id)
+  end
 end
+
