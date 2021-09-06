@@ -5,7 +5,9 @@ class PatiencesController < ApplicationController
   def create
     user = Session.current_user
     patience = user.patiences.build(patience_params)
-    status = :bad_request
+    date = params[:registered_at].in_time_zone.to_date
+    patience.registered_at = date
+
     if patience.save
       status = :ok
       render json:{message:"patience has been registered",id:patience.id,money:patience.money,
