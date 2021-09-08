@@ -1,6 +1,7 @@
 session:
   url: redis://localhost:6379
-  timeout: 3600 * 24 * 365 * 20
+  # 20年間を秒数で表している　3600 * 24 * 365 * 2 = 630720000
+  timeout: 630720000　
 error_codes:
   unprocessable_entity: 422
   record_not_found: 2003
