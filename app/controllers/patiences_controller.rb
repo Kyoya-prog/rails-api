@@ -20,8 +20,11 @@ class PatiencesController < ApplicationController
   def update
     patience = Session.current_user.patiences.find_by(id:params[:id])
     date = params[:registered_at].in_time_zone.to_date
+    logger.info("date #{date}")
+    patience.registered_at = date
+    logger.info("registere_date #{patience.registered_at}")
     status = :bad_request
-    if patience.update(category_title: patience.category_title,memo: patience.memo,money: patience.money,registered_at: date)
+    if patience.update(patience_params)
       status = :ok
       render json:{message:"patience has been updated",id:patience.id,money:patience.money,
                    memo:patience.memo,category_title:patience.category_title,registered_at:patience.registered_at},status:status
@@ -50,6 +53,7 @@ class PatiencesController < ApplicationController
   def per_day
     date = Time.parse(params[:date]).in_time_zone.to_date
     patiences = Session.current_user.patiences.where(registered_at:date)
+    logger.info("per_day #{date}")
     status = :ok
     render json:{patiences:patiences},status:status
   end
