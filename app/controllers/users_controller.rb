@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = User.new()
+    @user = User.new
     @user.save!
     token = Session.create(@user)
     render json: {token:token},status: :ok
